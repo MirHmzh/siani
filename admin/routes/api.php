@@ -17,3 +17,4 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 Route::get('get_alumni/{id}', 'ApiController@get_alumni');
+Route::get('get_pengurus/{id}', 'ApiController@get_pengurus');

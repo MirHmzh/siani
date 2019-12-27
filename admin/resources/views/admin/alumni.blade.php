@@ -1,8 +1,10 @@
 @extends('layouts.admin')
+@section('css')
+    <link href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <h2>DATA ALUMNI</h2>
             <button type="button" class="btn bg-teal btn-lg waves-effect right m-b-10" data-toggle="modal" data-target="#largeModal">TAMBAH ALUMNI</button>
         </div>
         <div class="row clearfix">
@@ -71,6 +73,14 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <form action="{{ route('admin.alumni.save') }}" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Jabatan</label>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="pengurus_id">
+                                            @foreach($jabatan as $key => $value)
+                                                <option value="{{ $value->id }}">{{ $value->nama_jabatan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <label for="nama">Nama Lengkap</label>
                                     <div class="form-group">
                                         <div class="form-line">
@@ -140,6 +150,14 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <form action="{{ route('admin.alumni.update') }}" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Jabatan</label>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="pengurus_id">
+                                            @foreach($jabatan as $key => $value)
+                                                <option value="{{ $value->id }}">{{ $value->nama_jabatan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <label for="nama">Nama Lengkap</label>
                                     <div class="form-group">
                                         <div class="form-line">
@@ -196,6 +214,7 @@
     </div>
 @endsection
 @section('js')
+    <script src="{{asset('assets/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
     <script>
         $('#btn-delete').click(function(e){
             e.preventDefault() // Don't post the form, unless confirmed

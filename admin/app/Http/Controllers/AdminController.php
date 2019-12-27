@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumni;
+use App\Pengurus;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,7 +16,8 @@ class AdminController extends Controller
     public function alumni()
     {
         $data = Alumni::orderBy('id','desc')->paginate(10);
-        return view('admin.alumni',compact('data'));
+        $jabatan = Pengurus::orderBy('order','asc')->get();
+        return view('admin.alumni',compact('data','jabatan'));
     }
 
     public function save_alumni(Request $request)
@@ -45,6 +47,36 @@ class AdminController extends Controller
         $data = $request->all();
         $data = $request->except('_token');
         Alumni::where('id',$request->id)->update($data);
+        return back();
+    }
+
+    public function pengurus()
+    {
+        $data = Pengurus::orderBy('order','asc')->get();
+        return view('admin.pengurus', compact('data'));
+    }
+
+    public function save_pengurus(Request $request)
+    {
+        try{
+            Pengurus::create($request->all());
+            return back();
+        }catch (\Exception $e){
+            return response()->json(["message" => $e->getMessage(), "error"=>TRUE]);
+        }
+    }
+
+    public function delete_pengurus(Request $request)
+    {
+        Pengurus::find($request->id)->delete();
+        return back();
+    }
+
+    public function update_pengurus(Request $request)
+    {
+        $data = $request->all();
+        $data = $request->except('_token');
+        Pengurus::where('id',$request->id)->update($data);
         return back();
     }
 }

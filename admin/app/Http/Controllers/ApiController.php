@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumni;
+use App\Pengurus;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -11,6 +12,15 @@ class ApiController extends Controller
     {
         try{
             return Alumni::find($id);
+        }catch (\Exception $e){
+            return response()->json(["message"=>$e->getMessage(), TRUE]);
+        }
+    }
+
+    public function get_pengurus($id)
+    {
+        try{
+            return Pengurus::find($id);
         }catch (\Exception $e){
             return response()->json(["message"=>$e->getMessage(), TRUE]);
         }
