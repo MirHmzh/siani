@@ -90,11 +90,11 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="image">
-                <img src="images/user.png" width="48" height="48" alt="User" />
+                <img src="{{asset('assets/images/user.png')}}" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                <div class="email">john.doe@example.com</div>
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
+                <div class="email">{{ Auth::user()->email }}</div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
@@ -119,31 +119,31 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.alumni') }}">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">assignment</i>
                         <span>Data Alumni</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.pengurus') }}">
-                        <i class="material-icons">layers</i>
+                        <i class="material-icons">assignment_ind</i>
                         <span>Data Pengurus</span>
                     </a>
                 </li>
                 <li>
-                    <a href="pages/helper-classes.html">
-                        <i class="material-icons">layers</i>
+                    <a href="{{ route('admin.agenda') }}">
+                        <i class="material-icons">perm_contact_calendar</i>
                         <span>Agenda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="pages/helper-classes.html">
-                        <i class="material-icons">layers</i>
+                    <a href="{{ route('admin.berita') }}">
+                        <i class="material-icons">fiber_new</i>
                         <span>Berita</span>
                     </a>
                 </li>
                 <li>
-                    <a href="pages/helper-classes.html">
-                        <i class="material-icons">layers</i>
+                    <a href="{{ route('admin.galeri') }}">
+                        <i class="material-icons">theaters</i>
                         <span>Galeri</span>
                     </a>
                 </li>
@@ -153,10 +153,7 @@
         <!-- Footer -->
         <div class="legal">
             <div class="copyright">
-                &copy; 2016 - 2017 <a href="javascript:void(0);">Sistem Informasi Alumni UMSIDA | SIANIDA</a>.
-            </div>
-            <div class="version">
-                <b>Version: </b> 1.0.5
+                &copy; 2019 - 2020 <a href="javascript:void(0);">Sistem Informasi Alumni UMSIDA | SIANIDA</a>.
             </div>
         </div>
         <!-- #Footer -->
