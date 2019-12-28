@@ -13,7 +13,7 @@ class ApiController extends Controller
     public function get_all_alumni()
     {
         try{
-            return Alumni::all();
+            return Alumni::with('pengurus')->get();
         }catch (\Exception $e){
             return response()->json(["message"=>$e->getMessage(), TRUE]);
         }
