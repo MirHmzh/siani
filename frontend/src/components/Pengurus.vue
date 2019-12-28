@@ -1,5 +1,6 @@
 <template>
 	<b-row>
+		<vue-topprogress ref="topProgress" height=5 colorShadow="rgba(0,0,0,0)"></vue-topprogress>
 		<TreeChart :json="treeData" />
 	</b-row>
 </template>
@@ -12,9 +13,12 @@
 
 <script>
 	import TreeChart from "vue-tree-chart";
+	import { vueTopprogress } from 'vue-top-progress'
+
 	export default {
 		components: {
-	    	TreeChart
+	    	TreeChart,
+	    	vueTopprogress
 		},
 		data() {
 			return {
@@ -51,6 +55,14 @@
 			    ]
 				}
 			}
-		}
+		},
+		mounted(){
+			this.$refs.topProgress.start();
+		},
+		updated(){
+	    setTimeout(() => {
+	      this.$refs.topProgress.done();
+	    }, 500)
+	  }
 	}
 </script>

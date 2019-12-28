@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import VueProgressBar from 'vue-progressbar'
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false

@@ -1,6 +1,7 @@
 <template>
 	<b-row>
-		 <FullCalendar defaultView="dayGridMonth" :plugins="calendarPlugins" />
+		<vue-topprogress ref="topProgress" height=5 colorShadow="rgba(0,0,0,0)"></vue-topprogress>
+		<FullCalendar defaultView="dayGridMonth" :plugins="calendarPlugins" />
 	</b-row>
 </template>
 
@@ -10,18 +11,29 @@
 </style>
 
 <script>
-require('@fullcalendar/core/main.css')
-import FullCalendar from '@fullcalendar/vue'
-import dayGridPlugin from '@fullcalendar/daygrid'
-export default{
-	name : 'Agenda',
-	components: {
-	  FullCalendar // make the <FullCalendar> tag available
-	},
-	data() {
-	  return {
-	    calendarPlugins: [ dayGridPlugin ]
+	require('@fullcalendar/core/main.css')
+	import FullCalendar from '@fullcalendar/vue'
+	import dayGridPlugin from '@fullcalendar/daygrid'
+	import { vueTopprogress } from 'vue-top-progress'
+
+	export default{
+		name : 'Agenda',
+		components: {
+		  FullCalendar,
+		  vueTopprogress // make the <FullCalendar> tag available
+		},
+		data() {
+		  return {
+		    calendarPlugins: [ dayGridPlugin ]
+		  }
+		},
+		mounted(){
+			this.$refs.topProgress.start();
+		},
+		updated(){
+	    setTimeout(() => {
+	      this.$refs.topProgress.done();
+	    }, 500)
 	  }
 	}
-}
 </script>
