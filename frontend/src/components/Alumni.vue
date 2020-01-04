@@ -4,7 +4,7 @@
     <b-card-group deck>
       <b-col cols=3 v-for="alumni in alumnis" v-bind:key="alumni.id">
          <b-link :to="{path : `alumni/${alumni.id}`}">
-           <b-card title="Siti Maemunah" img-src="https://m.media-amazon.com/images/M/MV5BMjUzZTJmZDItODRjYS00ZGRhLTg2NWQtOGE0YjJhNWVlMjNjXkEyXkFqcGdeQXVyMTg4NDI0NDM@._V1_.jpg" img-alt="Image" img-top sub-title="2017 - 2021">
+           <b-card :title="alumni.nama_alumni" :img-src="`${ baseUrl }images/${ alumni.foto }`" img-alt="Image" img-top :sub-title="`${ alumni.thn_masuk } - ${alumni.thn_lulus}`">
             </b-card>
          </b-link>
       </b-col>
@@ -24,13 +24,15 @@ export default {
   data(){
     return{
       alumnis : [],
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
+      baseUrl : this.$baseUrl,
     }
   },
   mounted(){
     this.$refs.topProgress.start();
-    axios.get('https://jsonplaceholder.typicode.com/users').
+    axios.get(`${ this.$baseUrl }api/get_all_alumni`).
     then(result => {
+      console.log(result);
       this.alumnis = result.data;
     });
   },

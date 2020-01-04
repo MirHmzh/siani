@@ -10,9 +10,11 @@ import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import VueProgressBar from 'vue-progressbar'
 
+Vue.prototype.$baseUrl = 'http://localhost/pbw_alumni/admin/';
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.use(FullCalendar)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

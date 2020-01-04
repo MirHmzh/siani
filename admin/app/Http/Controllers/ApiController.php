@@ -6,6 +6,7 @@ use App\Agenda;
 use App\Alumni;
 use App\Berita;
 use App\Pengurus;
+use App\Galeri;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller

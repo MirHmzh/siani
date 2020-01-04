@@ -7,12 +7,12 @@
           <b-card no-body class="overflow-hidden" style="max-width: 540px;">
             <b-row no-gutters>
               <b-col md="6">
-                <b-card-img src="https://picsum.photos/400/400/?image=20" class="rounded-0"></b-card-img>
+                <b-card-img :src="`${ baseUrl }images/${ berita.image }`" class="rounded-0"></b-card-img>
               </b-col>
               <b-col md="6">
-                <b-card-body title="Alumni UMSIDA 2019 Tertangkap Basah">
+                <b-card-body :title="berita.judul_berita">
                   <b-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    {{ berita.konten.substring(200,0) }}
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -42,6 +42,7 @@
     data(){
       return{
         beritas : [],
+        baseUrl : this.$baseUrl,
       }
     },
     components: {
@@ -49,9 +50,16 @@
     },
     mounted(){
       this.$refs.topProgress.start();
-      axios.get('https://jsonplaceholder.typicode.com/users').
+      axios.get(this.$baseUrl+'api/get_all_berita').
       then(result => {
-        this.beritas = result.data;
+        result.data.forEach((data, index) => {
+          this.beritas.push({
+            id : data.id,
+            image : data.image,
+            judul_berita : data.judul_berita,
+            konten : data.konten
+          });
+        })
       });
     },
     updated(){

@@ -8,12 +8,14 @@
 <style scoped>
 	.node .person{
 		width: 100%;
+		overflow: none;
 	}
 </style>
 
 <script>
 	import TreeChart from "vue-tree-chart";
 	import { vueTopprogress } from 'vue-top-progress'
+	import axios from 'axios';
 
 	export default {
 		components: {
@@ -58,6 +60,10 @@
 		},
 		mounted(){
 			this.$refs.topProgress.start();
+			axios.get(this.$baseUrl+'api/get_all_galeri').
+			then((data) => {
+				let children = [];
+			});
 		},
 		updated(){
 	    setTimeout(() => {

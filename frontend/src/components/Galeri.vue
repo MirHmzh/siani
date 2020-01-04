@@ -5,13 +5,11 @@
 		  <b-card-group columns>
 		    <b-card
 		      overlay
-		      title="Agenda Bukber 2019"
 		      text-variant="white"
-		      img-src="https://fst.umsida.ac.id/wp-content/uploads/2019/09/thp-1.jpg"
-		      img-alt="Image"
 		      img-top
 		      v-for="galeri in galeris"
 		      v-bind:key="galeri.id"
+		      :img-src="galeri.path"
 		    >
 		    </b-card>
 		  </b-card-group>
@@ -30,8 +28,8 @@
 	export default {
 		name : 'Galeri',
 		components: {
-      vueTopprogress
-    },
+	      vueTopprogress
+	    },
 		data(){
 			return{
 				galeris : [],
@@ -39,9 +37,18 @@
 		},
 		mounted(){
 			this.$refs.topProgress.start();
-			axios.get('https://jsonplaceholder.typicode.com/users').
+			axios.get(this.$baseUrl+'api/get_all_galeri').
 			then(result => {
-				this.galeris = result.data;
+				// this.galeris = result.data;
+				let temp_galeris = [],
+					url = this.$baseUrl;
+				result.data.forEach( function(element, index) {
+					temp_galeris.push({
+						id : element.id,
+						path : url+'images/'+element.path_attachment
+					});
+				});
+				this.galeris = temp_galeris;
 			});
 		},
 		updated(){

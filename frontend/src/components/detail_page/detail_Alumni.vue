@@ -2,7 +2,7 @@
 	<b-row>
 		<vue-topprogress ref="topProgress" colorShadow="rgba(0,0,0,0)"></vue-topprogress>
 		<b-card
-			img-src="https://placekitten.com/300/300"
+			:img-src="img_profile"
 			img-alt="Card image" img-left
 			class="detail-card"
 			:title="`Detail Alumni ${nama}`">
@@ -52,6 +52,11 @@
 		top: 1em;
 		right: 1em;
 	}
+	.card-img-left{
+		width: 15em;
+		height: 15em;
+		object-fit: cover;
+	}
 </style>
 <script>
 	import axios from 'axios'
@@ -64,21 +69,24 @@
 	  },
 	  data(){
 	  	return {
-	  		nama : 'John Doe',
-	  		alamat : 'Jl. Suka Makan',
-	  		jurusan : 'Informatika',
-	  		kelas : 'B2',
-	  		periode : '2017 - 2021',
+	  		nama : '',
+	  		alamat : '',
+	  		jurusan : '',
+	  		kelas : '',
+	  		periode : '',
+	  		img_profile : '',
 	  	}
 	  },
 		mounted(){
-			// setTimeout(() => {
-	  //     this.$refs.topProgress.start();
-	  //   }, 300)
 	  	this.$refs.topProgress.start();
-	    axios.get('https://jsonplaceholder.typicode.com/users/'+this.$route.params.id).
+	    axios.get(this.$baseUrl+'api/get_alumni/'+this.$route.params.id).
 	    then(result => {
-	    	this.nama = 'Amirudeen';
+	    	this.nama = result.data.nama_alumni;
+	    	this.alamat = result.data.alamat_alumni;
+	    	this.jurusan = result.data.jurusan_alumni;
+	    	this.kelas = result.data.kelas_alumni;
+	    	this.periode = result.data.thn_masuk+' - '+result.data.thn_lulus;
+	    	this.img_profile = this.$baseUrl+'images/'+result.data.foto;
 	    });
 		},
 		updated(){
