@@ -20,7 +20,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "jquery": "^3.4.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "sass": "^1.24.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.5.2",
